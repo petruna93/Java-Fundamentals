@@ -1,4 +1,4 @@
-package ObjectsAndClassesLab;
+package ObjectsAndClassesLab.Students;
 
 public class Students {
     private String firstName;

@@ -1,4 +1,4 @@
-package ObjectsAndClassesLab;
+package ObjectsAndClassesLab.Students;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +19,18 @@ public class Main {
             int age = Integer.parseInt(tokens[2]);
             String city = tokens[3];
 
-            Students student = new Students(firstName,lastName,age,city);
-            students.add(student);
+            if (isStudentExisting(students,firstName,lastName)){
+                Students student = getStudent(students,firstName,lastName);
+
+                student.setFirstName(firstName);
+                student.setLastName(lastName);
+                student.setAge(age);
+                student.setHomeTown(city);
+
+            }else {
+                Students student = new Students(firstName, lastName, age, city);
+                students.add(student);
+            }
 
             input = scanner.nextLine();
         }
@@ -31,5 +41,22 @@ public class Main {
        for (Students student : filterStudents){
            System.out.printf("%s %s is %d years old%n", student.getFirstName(),student.getLastName(),student.getAge());
        }
+    }
+
+    private static Students getStudent(List<Students> students, String firstName, String lastName) {
+        Students existingStudent = null;
+        for (Students student:students){
+            existingStudent=student;
+        }
+        return existingStudent;
+    }
+
+    private static boolean isStudentExisting(List<Students> students, String firstName, String lastName) {
+        for (Students student: students){
+            if (student.getFirstName().equals(firstName) && student.getLastName().equals(lastName)){
+                return true;
+            }
+        }
+        return false;
     }
 }
